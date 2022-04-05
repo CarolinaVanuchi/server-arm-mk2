@@ -12,8 +12,8 @@ exports.save = async (angle: Angle, description: string) => {
     [description, angle.theta1, angle.theta2, angle.theta3]
   );
   
- exports.remove = async (id: number) => {
-   await db.query('DELETE FROM angle where id_angle = $1', [id]);
+ exports.remove = async (id_angle: number) => {
+   await db.query('DELETE FROM angle where id_angle = $1', [id_angle]);
  }
   
 }

@@ -14,6 +14,6 @@ exports.save = async (request: any) => {
 }
 
 exports.remove = async (request: any) => {
-    const id: number = parseInt(request.id);
+    const id: number = parseInt(request.id_angle);
     await dao.remove(id);
 }
