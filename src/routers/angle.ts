@@ -27,8 +27,8 @@ angle.post('/save', async (req, res) => {
     res.status(201).send(response);
 });
 
-angle.delete('/remove', async (req, res) => {
-    await controllerAngle.remove(req.body);
+angle.delete('/remove/', async (req, res) => {
+    await controllerAngle.delete(req.body);
     res.status(201).send('OK');
 })
 export default angle;
