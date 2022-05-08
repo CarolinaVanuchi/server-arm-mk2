@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS angle
+(
+    id_angle integer NOT NULL DEFAULT nextval('angle_id_agle_seq'::regclass),
+    description character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    theta1 numeric(5,2),
+    theta2 numeric(5,2),
+    theta3 numeric(5,2),
+    CONSTRAINT angle_pkey PRIMARY KEY (id_angle)
+)
