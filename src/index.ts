@@ -3,6 +3,7 @@ import cors from 'cors';
 import angle from './routers/angle';
 import position from './routers/position';
 import cartesian from './routers/cartesian';
+import kinematics from './controller/kinematics';
 
 const PORT = process.env.PORT || 4000
 
@@ -24,6 +25,8 @@ app.use(cors({
 app.use('/api', angle);
 app.use('/api', cartesian);
 app.use('/api', position);
+app.use('/api', kinematics);
+
 
 app.use((req, res) => {
     res.status(404).send();
