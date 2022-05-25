@@ -1,22 +1,13 @@
 import express from 'express';
 import Angle from '../models/angle';
 const controller_angle = require('../controller/angle');
-const controller_step = require('../controller/step');
-const uart = require('../uart/uart');
+const serial = require('../serial/serial');
 const angle = express.Router();
 
 angle.post('/angle', (req, res) => {
     const angle: Angle = req.body;
-    let step1 : number;
-    let step2 : number;
-    let step3 : number;
     try {
-        step1 = controller_step.step(angle.theta1);
-        step2 = controller_step.step(angle.theta2);
-        step3 = controller_step.step(angle.theta3);
-        console.log(step1);
-        console.log(step2);
-        console.log(step3);
+        serial.write(angle.theta1, angle.theta2, angle.theta3);
         res.status(201).send()
     } catch (error) {
         res.statusMessage = "Error: " + error;
@@ -25,9 +16,8 @@ angle.post('/angle', (req, res) => {
 });
 
 angle.get('/all', async (req, res)  => {
-    uart();
-    //const response = await controller_angle.getAll();
-    //res.status(201).send(response);
+    const response = await controller_angle.getAll();
+    res.status(201).send(response);
 });
 
 angle.post('/save', async (req, res) => {
