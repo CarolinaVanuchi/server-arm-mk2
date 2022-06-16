@@ -19,7 +19,6 @@ exports.write = (theta1: string, theta2: string, theta3: string) => {
     console.log(thetas);
   })
 
-  // Open errors will be emitted as an error event
   port.on('error', function (err: { message: any }) {
     console.log('Error: ', err.message)
   })
