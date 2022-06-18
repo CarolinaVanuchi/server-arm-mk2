@@ -33,7 +33,7 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Servidor rodando com sucesso ${HOSTNAME}:${PORT}`)
+    console.log(`Servidor rodando com sucesso ${HOSTNAME}:${PORT}`);
 });
 
 

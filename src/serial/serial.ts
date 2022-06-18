@@ -1,4 +1,5 @@
 const { SerialPort } = require('serialport')
+const { ReadlineParser } = require('@serialport/parser-readline')
 
 const port = new SerialPort({
   path: 'COM5',
@@ -21,5 +22,14 @@ exports.write = (theta1: string, theta2: string, theta3: string) => {
 
   port.on('error', function (err: { message: any }) {
     console.log('Error: ', err.message)
+  })
+}
+
+exports.read = () => {
+  console.log('here');
+  const parser = port.pipe(new ReadlineParser());
+  parser.on('data', function (line : string) {
+    console.log(line);
+    return line;
   })
 }
