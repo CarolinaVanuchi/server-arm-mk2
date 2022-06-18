@@ -16,11 +16,11 @@ angle.post('/angle', (req, res) => {
 });
 
 angle.get('/all', async (req, res)  => {
-    let c = serial.read();
-     console.log(c);
-    // const response = await controller_angle.getAll();
-    // res.status(201).send(response);
-    res.status(201).send("response");
+    // let c = serial.read();
+    //  console.log(c);
+    const response = await controller_angle.getAll();
+    res.status(201).send(response);
+    // res.status(201).send("response");
 });
 
 angle.post('/save', async (req, res) => {
