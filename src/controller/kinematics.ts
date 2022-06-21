@@ -1,25 +1,21 @@
-import express from 'express';
 import { create, all } from 'mathjs'
+const serial = require('../serial/serial');
 
 const config = {}
 const mathjs = create(all, config)
-const kinematics = express.Router();
 
+exports.kinematics_calc = (xf: number, yf: number, zf: number) => {
 
-kinematics.get('/kinematics', (req, res) => {
+    console.log("Kinematics")
     const l1 = 0.076;
     const l2 = 0.135;
     const l3 = 0.146;
     const l4 = 0.07;
-    
+
     let aux1: number;
     let t3_aux = [];
     let t2 = [];
     let t4 = [];
-
-    const xf = 0.02;
-    const yf = 0.15;
-    const zf = 0.3;
 
     let t1_ = (Math.atan2(yf, xf) * 180) / Math.PI;
     let t1 = [t1_, t1_];
@@ -35,7 +31,7 @@ kinematics.get('/kinematics', (req, res) => {
     let t2_b = Math.acos((l2 + l3 * Math.cos(t3[1] * Math.PI / 180)) / h2);
 
     let t2_c = Math.asin((zf - l1) / h2);
-    
+
 
     for (let i = 0; i < t3.length; i++) {
         if (t3[i] > 0)
@@ -49,19 +45,15 @@ kinematics.get('/kinematics', (req, res) => {
     }
 
     for (let i = 0; i < t3_aux.length; i++) {
-        t2[i] = (t2_c - t3_aux[i]*t2_b)*180/Math.PI; 
+        t2[i] = (t2_c - t3_aux[i] * t2_b) * 180 / Math.PI;
     }
 
     for (let i = 0; i < t3_aux.length; i++) {
-        t4[i] = -(t2[i]+t3[i]); 
+        t4[i] = -(t2[i] + t3[i]);
     }
+    console.log(t1[0]);
+    console.log(t2[0]);
+    console.log(t3[0]);
 
-    console.log(t1);
-    console.log(t2);
-    console.log(t3);
-    console.log(t4);
-    
-    res.json("teste");
-});
-
-export default kinematics;
+    serial.write(t1[0], t2[0], t3[0]);
+}
