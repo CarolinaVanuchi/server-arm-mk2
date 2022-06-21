@@ -7,6 +7,7 @@ const angle = express.Router();
 angle.post('/angle', (req, res) => {
     const angle: Angle = req.body;
     try {
+        console.log(angle);
         serial.write(angle.theta1, angle.theta2, angle.theta3);
         res.status(201).send()
     } catch (error) {
@@ -15,12 +16,11 @@ angle.post('/angle', (req, res) => {
     }
 });
 
-angle.get('/all', async (req, res)  => {
-    // let c = serial.read();
-    //  console.log(c);
+angle.get('/all', async (req, res) => {
+
     const response = await controller_angle.getAll();
     res.status(201).send(response);
-    // res.status(201).send("response");
+
 });
 
 angle.post('/save', async (req, res) => {
@@ -31,5 +31,6 @@ angle.post('/save', async (req, res) => {
 angle.delete('/remove/', async (req, res) => {
     await controller_angle.delete(req.body);
     res.status(201).send('OK');
-})
+});
+
 export default angle;

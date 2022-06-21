@@ -1,8 +1,11 @@
 import express from 'express';
 import Angle from '../models/angle';
 const position = express.Router();
+const serial = require('../serial/serial');
 
-position.get('/position', (req, res) => {
+position.get('/position', async (req, res) => {
+    let theta_values = await serial.read();
+    console.log(theta_values);
 
     try {
         let angle: Angle =

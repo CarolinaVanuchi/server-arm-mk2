@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import angle from './routers/angle';
-import position from './routers/position';
+import position from './serial/serial';
 import cartesian from './routers/cartesian';
 import kinematics from './controller/kinematics';
 
