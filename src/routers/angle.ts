@@ -7,9 +7,8 @@ const angle = express.Router();
 angle.post('/angle', (req, res) => {
     const angle: Angle = req.body;
     try {
-        console.log(angle);
         serial.write(angle.theta1, angle.theta2, angle.theta3);
-        res.status(201).send()
+        res.status(201).send();
     } catch (error) {
         res.statusMessage = "Error: " + error;
         res.status(500).end();

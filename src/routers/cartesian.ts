@@ -7,10 +7,6 @@ cartesian.post('/cartesian', (req, res) => {
     const cartesian: Cartesian = req.body;
     try {
 
-        console.log(cartesian.pointX);
-        console.log(cartesian.pointY);
-        console.log(cartesian.pointZ);
-        
         kinematics.kinematics_calc(cartesian.pointX, cartesian.pointY, cartesian.pointZ);
 
         res.status(201).send();
